@@ -20,21 +20,21 @@ public static class LogModule
     /// </summary>
     /// <param name="message">Your Message for the Log.</param>
     /// <returns></returns>
-    public static void WriteInformationMessageToLogAsync(string message) => _logger.Information(message);
+    public static void WriteInformationMessageToLog(string message) => _logger.Information(message);
 
     /// <summary>
     ///     Write a Message with Level "Debug" to the Log.
     /// </summary>
     /// <param name="message">Your Message for the Log.</param>
     /// <returns></returns>
-    public static void  WriteDebugMessageToLogAsync(string message) => _logger.Debug(message);
+    public static void  WriteDebugMessageToLog(string message) => _logger.Debug(message);
 
     /// <summary>
     ///     Write a Message with Level "Error" to the Log.
     /// </summary>
     /// <param name="message">Your Message for the Log.</param>
     /// <returns></returns>
-    public static void WriteErrorMessageToLogAsync(string message) => _logger.Error(message);
+    public static void WriteErrorMessageToLog(string message) => _logger.Error(message);
 
     /// <summary>
     ///     Closes the logging Pipeline.

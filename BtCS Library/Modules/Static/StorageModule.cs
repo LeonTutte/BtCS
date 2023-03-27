@@ -9,6 +9,7 @@ public static class StorageModule
     {
         string connectionString = GetConnectionStringFromConfigurationFile();
         if (connectionString == null) throw new ArgumentNullException(nameof(connectionString));
+        LogModule.WriteInformationMessageToLog($"Reading database from: {connectionString}");
         return new LiteDatabase(connectionString);
     }
 
