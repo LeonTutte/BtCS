@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BtCS UI", "BtCS UI\BtCS UI.csproj", "{14E80B30-2C7A-4C1D-B7D6-704A70A1B3CC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BtCS Library", "BtCS Library\BtCS Library.csproj", "{6AD4E957-1A4B-4AD1-BC4C-A678A2061C46}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BtCS Desktop", "BtCS Desktop\BtCS Desktop.csproj", "{4FEC6BB8-63D0-4848-A587-E79078566A2F}"
@@ -12,10 +10,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{14E80B30-2C7A-4C1D-B7D6-704A70A1B3CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{14E80B30-2C7A-4C1D-B7D6-704A70A1B3CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{14E80B30-2C7A-4C1D-B7D6-704A70A1B3CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{14E80B30-2C7A-4C1D-B7D6-704A70A1B3CC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6AD4E957-1A4B-4AD1-BC4C-A678A2061C46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6AD4E957-1A4B-4AD1-BC4C-A678A2061C46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AD4E957-1A4B-4AD1-BC4C-A678A2061C46}.Release|Any CPU.ActiveCfg = Release|Any CPU
