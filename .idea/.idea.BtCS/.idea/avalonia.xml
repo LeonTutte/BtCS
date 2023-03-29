@@ -5,6 +5,7 @@
       <map>
         <entry key="BtCS Desktop/App.axaml" value="BtCS Desktop/BtCS Desktop.csproj" />
         <entry key="BtCS Desktop/MainWindow.axaml" value="BtCS Desktop/BtCS Desktop.csproj" />
+        <entry key="BtCS Desktop/Views/MainWindow.axaml" value="BtCS Desktop/BtCS Desktop.csproj" />
       </map>
     </option>
   </component>

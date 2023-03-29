@@ -7,14 +7,61 @@
         x:Class="BtCS_Desktop.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="BtCS_Desktop">
+        Title="BtCS_Desktop"
+        MinHeight="768"
+        MinWidth="1024">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <Border
+        Padding="30"
+        BorderThickness="2">
+        <StackPanel
+            Spacing="25"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Orientation="Vertical">
+            <Image
+                Source="../Assets/avalonia-logo.ico"
+                Height="200"
+                HorizontalAlignment="Center" />
+            <StackPanel
+                Spacing="25"
+                VerticalAlignment="Center"
+                Orientation="Vertical">
+                <Label
+                    Content="Welcome Back!"
+                    FontSize="28"
+                    HorizontalAlignment="Center" />
+                <TextBox
+                    x:Name="UsernameEntry"
+                    Text="{Binding UserName}" />
+                <TextBox
+                    x:Name="UserPassword"
+                    PasswordChar="*"
+                    Text="{Binding UserPassword}" />
+            </StackPanel>
+            <StackPanel
+                Spacing="25"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+                <Button
+                    x:Name="LoginBtn"
+                    Content="Login"
+                    Command="{Binding LoginCommand}"
+                    HorizontalAlignment="Center" />
+
+                <Button
+                    x:Name="ExitBtn"
+                    Content="Exit"
+                    HorizontalAlignment="Center"
+                    Command="{Binding ExitCommand}" />
+            </StackPanel>
+        </StackPanel>
+    </Border>
 
 </Window>

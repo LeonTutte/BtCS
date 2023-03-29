@@ -1,58 +1,59 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BtCS_UI.Pages.MainPage"
              xmlns:viewmodel="clr-namespace:BtCS_UI.ViewModel"
              x:DataType="viewmodel:MainViewModel">
     <VerticalStackLayout
+        Spacing="25"
+        Padding="30,0"
+        VerticalOptions="Center"
+        HorizontalOptions="Center">
+
+        <Image
+            Source="login.png"
+            HeightRequest="200"
+            HorizontalOptions="Center" />
+
+        <Frame>
+            <VerticalStackLayout
                 Spacing="25"
                 Padding="30,0"
-                VerticalOptions="Center"
-                HorizontalOptions="Center">
+                VerticalOptions="Center">
 
-                <Image
-                    Source="login.png"
-                    HeightRequest="200"
-                    HorizontalOptions="Center" />
-                
-                <Frame>
-                    <VerticalStackLayout
-                        Spacing="25"
-                        Padding="30,0"
-                        VerticalOptions="Center">
-                        
-                        <Label 
-                            Text="Welcome Back!"
-                            FontSize="28"
-                            HorizontalTextAlignment="Center" />
-                        
-                        <Entry 
-                            x:Name="UsernameEntry"
-                            Placeholder="Username"
-                            Text="{Binding UserName}" />
-                        
-                        <Entry 
-                            x:Name="PasswordEntry"
-                            Placeholder="Password"
-                            Text="{Binding UserPassword}"
-                            IsPassword="True" />
-                    </VerticalStackLayout>
-                </Frame>
-                <HorizontalStackLayout
-                    Spacing="25"
-                    Padding="30,0"
-                    HorizontalOptions="Center">
-                    <Button
-                        x:Name="LoginBtn"
-                        Text="Login"
-                        Command="{Binding LoginCommand}"
-                        HorizontalOptions="Center" />
-                    
-                    <Button
-                        x:Name="ExitBtn"
-                        Text="Exit"
-                        HorizontalOptions="Center"
-                        Command="{Binding ExitCommand}"/>
-                </HorizontalStackLayout>
+                <Label
+                    Text="Welcome Back!"
+                    FontSize="28"
+                    HorizontalTextAlignment="Center" />
+
+                <Entry
+                    x:Name="UsernameEntry"
+                    Placeholder="Username"
+                    Text="{Binding UserName}" />
+
+                <Entry
+                    x:Name="PasswordEntry"
+                    Placeholder="Password"
+                    Text="{Binding UserPassword}"
+                    IsPassword="True" />
             </VerticalStackLayout>
+        </Frame>
+        <HorizontalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            HorizontalOptions="Center">
+            <Button
+                x:Name="LoginBtn"
+                Text="Login"
+                Command="{Binding LoginCommand}"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="ExitBtn"
+                Text="Exit"
+                HorizontalOptions="Center"
+                Command="{Binding ExitCommand}" />
+        </HorizontalStackLayout>
+    </VerticalStackLayout>
 </ContentPage>
