@@ -12,12 +12,18 @@ public class UserDataHelper : IStorageDataHelper<UserModel>
 
     public bool CheckIfUserExists(string userLabel)
     {
-        var userList = _collection.Query()
-            .OrderBy(x => x.Label)
-            .Select(x => x.Label)
-            .ToList();
-        if (userList.Count == 0) return false;
-        return !userList.Contains(userLabel);
+        try
+        {
+            var userList = _collection.Query()
+                .OrderBy(x => x.Label)
+                .Select(x => x.Label)
+                .ToList();
+            return userList.Contains(userLabel);
+        }
+        catch (Exception)
+        {
+            return false;
+        }
     }
     public UserDataHelper(LiteDatabase Storage)
     {
@@ -42,7 +48,7 @@ public class UserDataHelper : IStorageDataHelper<UserModel>
         {
             if (record == null) throw new ArgumentNullException(nameof(record));
             _collection.Insert(record);
-            return _collection.Query().Where(x => x.Label.Equals(record.Label)).First().Id;
+            return _collection.Query().Where(x => x.Label.Equals(record.Label) && x.Password.Equals(record.Password)).First().Id;
         }
         catch (Exception)
         {
