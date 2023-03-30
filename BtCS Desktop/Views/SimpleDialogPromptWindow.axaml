@@ -1,0 +1,45 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="using:BtCS_Desktop.ViewModels"
+        x:DataType="vm:SimpleDialogPromptWindowViewModel"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="BtCS_Desktop.Views.SimpleDialogPromptWindow"
+        Title="{Binding Title}"
+        Height="400"
+        Width="600"
+        CanResize="False">
+    <Design.DataContext>
+        <vm:SimpleDialogPromptWindowViewModel />
+    </Design.DataContext>
+    <Border
+        Padding="30"
+        BorderThickness="2">
+        <StackPanel
+            Spacing="25"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Orientation="Vertical">
+        <TextBlock
+            x:Name="Question"
+            Text="{Binding Message}"/>
+        <StackPanel
+            Spacing="25"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <Button
+                x:Name="YesBtn"
+                Content="Yes"
+                Command="{Binding Accept}"
+                HorizontalAlignment="Center" />
+
+            <Button
+                x:Name="NoBtn"
+                Content="No"
+                Command="{Binding Refuse}"
+                HorizontalAlignment="Center"/>
+        </StackPanel>
+        </StackPanel>
+    </Border>
+</Window>

@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BtCS Library", "BtCS Librar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BtCS Desktop", "BtCS Desktop\BtCS Desktop.csproj", "{4FEC6BB8-63D0-4848-A587-E79078566A2F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BtCS TMUI", "BtCS TMUI\BtCS TMUI.csproj", "{F9BA94F1-820C-4222-AD29-A1C48138DC2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{4FEC6BB8-63D0-4848-A587-E79078566A2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FEC6BB8-63D0-4848-A587-E79078566A2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4FEC6BB8-63D0-4848-A587-E79078566A2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9BA94F1-820C-4222-AD29-A1C48138DC2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9BA94F1-820C-4222-AD29-A1C48138DC2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9BA94F1-820C-4222-AD29-A1C48138DC2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9BA94F1-820C-4222-AD29-A1C48138DC2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

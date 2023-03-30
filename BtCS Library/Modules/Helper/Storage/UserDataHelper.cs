@@ -16,6 +16,7 @@ public class UserDataHelper : IStorageDataHelper<UserModel>
             .OrderBy(x => x.Label)
             .Select(x => x.Label)
             .ToList();
+        if (userList.Count == 0) return false;
         return !userList.Contains(userLabel);
     }
     public UserDataHelper(LiteDatabase Storage)

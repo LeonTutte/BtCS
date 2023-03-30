@@ -9,7 +9,8 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="BtCS_Desktop"
         MinHeight="768"
-        MinWidth="1024">
+        MinWidth="1024"
+        x:Name="MainWindowView">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -53,6 +54,7 @@
                     x:Name="LoginBtn"
                     Content="Login"
                     Command="{Binding LoginCommand}"
+                    CommandParameter="{Binding ElementName=MainWindowView}"
                     HorizontalAlignment="Center" />
 
                 <Button

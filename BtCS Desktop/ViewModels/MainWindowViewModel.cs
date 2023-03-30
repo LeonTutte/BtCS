@@ -1,6 +1,9 @@
-﻿using System;
+﻿
+using System;
 using System.IO;
 using System.Threading.Tasks;
+using Avalonia.Controls;
+using BtCS_Desktop.Views;
 using BtCS_Library.Modules.Helper.Storage;
 using BtCS_Library.Modules.Static;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -21,14 +24,24 @@ public partial class MainWindowViewModel : ViewModelBase
     private LiteDatabase? _storage;
 
     [RelayCommand]
-    async Task Login()
+    async Task Login(Window parentWindow)
     {
         if (string.IsNullOrWhiteSpace(UserName)) return;
         if (string.IsNullOrWhiteSpace(UserPassword)) return;
-
         _storage = StorageModule.GetStorage();
         if (!File.Exists(StorageModule.GetStoragePath())) return;
-        if (!AuthenticateOnStorage()) return;
+        if (!AuthenticateOnStorage())
+        {
+            SimpleDialogPromptWindow simpleDialogPromptWindow = new SimpleDialogPromptWindow();
+            SimpleDialogPromptWindowViewModel simpleDialogPromptWindowViewModel = new SimpleDialogPromptWindowViewModel()
+            {
+                Title = "User  creation",
+                Message = $"Do you want to create a new User with the name: {UserName}?"
+            };
+            simpleDialogPromptWindow.DataContext = simpleDialogPromptWindowViewModel;
+            await simpleDialogPromptWindow.ShowDialog(parentWindow);
+            var dialog = simpleDialogPromptWindowViewModel.Answer;
+        }
         // TODO: Add routing to next page
     }
     
@@ -43,12 +56,8 @@ public partial class MainWindowViewModel : ViewModelBase
         UserDataHelper userDataHelper = new UserDataHelper(_storage);
         var passwordHash = CryptoModule.CreateSHA512(UserPassword);
         var UserExists = userDataHelper.CheckIfUserExists(UserName);
-        if (!UserExists)
-        {
-            // TODO: Prompt for account creation
-            return false;
-        }
-        UserId = userDataHelper.GetUserIdByLabel(UserName);
+        if (!UserExists) return false;
+            UserId = userDataHelper.GetUserIdByLabel(UserName);
         if (userDataHelper.GetRecordById((int)UserId).Password != passwordHash) return false;
         // TODO: Implement failure prompt
         return true;
