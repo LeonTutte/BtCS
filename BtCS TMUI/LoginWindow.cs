@@ -8,9 +8,9 @@ namespace BtCS_TMUI;
 public class LoginWindow : Window
 {
     private readonly TextField usernameText;
+    private int? _userId;
     private string? _userName;
     private string? _userPassword;
-    private int? _userId;
 
     public LoginWindow()
     {
@@ -78,20 +78,39 @@ public class LoginWindow : Window
         {
             _userName = usernameText.Text.ToString();
             _userPassword = passwordText.Text.ToString();
-            
+
             if (string.IsNullOrWhiteSpace(_userName)) return;
             if (string.IsNullOrWhiteSpace(_userPassword)) return;
             if (!File.Exists(StorageModule.GetStoragePath()))
             {
                 MessageBox.ErrorQuery("Missing file", "Couldn't find storage file", "Ok");
-                var createStorage = MessageBox.Query("Message", $"Do you want to create a new storage?", "Yes", "No");
+                var createStorage = MessageBox.Query("Message", "Do you want to create a new storage?", "Yes", "No");
                 if (createStorage == 0)
                 {
-                    StorageModule.GetStorage();
-                    MessageBox.Query("Creating storage", $"Created the file at {StorageModule.GetStoragePath()}", "Ok");
+                    var storagePassword = CryptoModule.CreateStoragePassword();
+                    if (ConfigurationModule.WriteNewPassword(storagePassword))
+                    {
+                        StorageModule.GetStorage();
+                        MessageBox.Query("Creating storage", $"Created the file at {StorageModule.GetStoragePath()}", "Ok");
+                    }
+                    else
+                    {
+                        MessageBox.ErrorQuery("Error creating new storage", $"There was an error accessing the storage file,{Environment.NewLine} please take a log at the latest log", "Ok");
+                        return;
+                    }
+                    
                 }
                 else
+                {
                     MessageBox.Query("Aborted", "No file was created", "Ok");
+                }
+
+                return;
+            }
+
+            if (!StorageModule.CheckStoragePassword())
+            {
+                MessageBox.ErrorQuery("Storage exception", $"There was an error accessing the storage file,{Environment.NewLine} please check your password or take a log at the latest log", "Ok");
                 return;
             }
             if (AuthenticateOnStorage())
@@ -105,11 +124,13 @@ public class LoginWindow : Window
                 var createUser = MessageBox.Query("Message", $"Do you want to create the user {usernameText.Text}?", "Yes", "No");
                 if (createUser == 0)
                 {
-                    var id  =  CreateUser();
+                    var id = CreateUser();
                     MessageBox.Query("Creating user", $"Created the user {usernameText.Text} with Id {id}", "Ok");
                 }
                 else
+                {
                     MessageBox.Query("Aborted", "No user was created", "Ok");
+                }
             }
         };
 
@@ -118,10 +139,10 @@ public class LoginWindow : Window
         // Add the views to the Window
         Add(usernameLabel, usernameText, passwordLabel, passwordText, storageInfo, btnLogin, btnExit);
     }
-    
+
     private bool AuthenticateOnStorage()
     {
-        UserDataHelper userDataHelper = new UserDataHelper(StorageModule.GetStorage());
+        var userDataHelper = new UserDataHelper(StorageModule.GetStorage());
         var passwordHash = CryptoModule.CreateSHA512(_userPassword);
         var UserExists = userDataHelper.CheckIfUserExists(_userName);
         if (!UserExists) return false;
@@ -132,9 +153,9 @@ public class LoginWindow : Window
 
     private int CreateUser()
     {
-        UserDataHelper userDataHelper = new UserDataHelper(StorageModule.GetStorage());
+        var userDataHelper = new UserDataHelper(StorageModule.GetStorage());
         var passwordHash = CryptoModule.CreateSHA512(_userPassword);
-        return userDataHelper.InsertRecord(new UserModel()
+        return userDataHelper.InsertRecord(new UserModel
         {
             Label = _userName,
             Password = passwordHash

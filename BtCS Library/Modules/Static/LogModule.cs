@@ -9,10 +9,10 @@ public static class LogModule
     private static readonly Logger _logger = new LoggerConfiguration()
         .WriteTo.File($"{ConfigurationModule.GetConfiguration()["Logging"]["LogFolder"]}/log_.txt",
             rollOnFileSizeLimit: true,
-            fileSizeLimitBytes: Int32.Parse(ConfigurationModule.GetConfiguration()["Logging"]["MaxFileSize"]),
+            fileSizeLimitBytes: (Int32.Parse(ConfigurationModule.GetConfiguration()["Logging"]["MaxFileSize"]) * 1024) * 1024,
             rollingInterval: RollingInterval.Day,
             retainedFileCountLimit: Int32.Parse(ConfigurationModule.GetConfiguration()["Logging"]["FileCountLimit"]),
-            restrictedToMinimumLevel: LogEventLevel.Verbose)
+            restrictedToMinimumLevel: LogEventLevel.Debug)
         .CreateLogger();
 
     /// <summary>

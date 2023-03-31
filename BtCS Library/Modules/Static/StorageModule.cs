@@ -9,7 +9,7 @@ public static class StorageModule
     {
         string connectionString = GetConnectionStringFromConfigurationFile();
         if (connectionString == null) throw new ArgumentNullException(nameof(connectionString));
-        LogModule.WriteInformationMessageToLog($"Reading database from: {connectionString}");
+        //LogModule.WriteInformationMessageToLog($"Reading database from: {connectionString}");
         return new LiteDatabase(connectionString);
     }
 
@@ -24,5 +24,19 @@ public static class StorageModule
     {
         IniData data = ConfigurationModule.GetConfiguration();
         return Path.Combine(Environment.CurrentDirectory, data["Database"]["Filename"]);
+    }
+
+    public static bool CheckStoragePassword()
+    {
+        try
+        {
+            LiteDatabase _liteDatabase = GetStorage();
+            return true;
+        }
+        catch (LiteException e)
+        {
+            LogModule.WriteErrorMessageToLog("LiteDatabase Error: " + e.Message);
+            return false;
+        }
     }
 }
