@@ -3,6 +3,9 @@ _Bank to Customer Statement camt.053_
 
 ---
 
+This application was reimplemented to -> [Finance Console](https://github.com/LeonTutte/FinanceConsole)
+
+
 This application enables the import and viewing of [CAMT](https://www.ebics.de/securedl/sdl-eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Nzk4ODk2NjgsImV4cCI6MTY3OTk3OTY2OCwidXNlciI6MCwiZ3JvdXBzIjpbMCwtMV0sImZpbGUiOiJmaWxlYWRtaW5cL3Vuc2VjdXJlZFwvYW5sYWdlM1wvYW5sYWdlM19zcGVjX2FcL0FubGFnZV8zX0RhdGVuZm9ybWF0ZV9WMy42bUFFLnBkZiIsInBhZ2UiOjEwM30.LrgWfpgmKoKnRgZcFOIqqkROr44pjv9jLucBbcQg6fk/Anlage_3_Datenformate_V3.6mAE.pdf) files.
 These are currently implemented according to the CSV-CAMT v8 standard of Nospa.
 
